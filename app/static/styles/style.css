@@ -1,0 +1,63 @@
+@import url('includes/header.css');
+@import url('includes/footer.css');
+
+@font-face{
+	font-family: "Roboto-Light";
+	src: url('../../static/fonts/Roboto-Light.ttf') format('truetype');
+}
+@font-face{
+	font-family: "Roboto-Regular";
+	src: url('../../static/fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face{
+	font-family: "Roboto-Thin";
+	src: url('../../static/fonts/Roboto-Thin.ttf') format('truetype');
+}
+@font-face{
+	font-family: "Roboto-Bold";
+	src: url('../../static/fonts/Roboto-Bold.ttf') format('truetype');
+}
+* {
+	margin: 0;
+}
+
+body {
+	background-color: #e6eae3;
+}
+th {
+	padding: 5px;
+	width: 100px;
+	text-align: center;
+	font-family: Roboto-Regular;
+	font-size: 1.3em
+}
+
+tr {
+	height: 5em;
+}
+
+thead {
+	background-color: #2a2b2c;
+	color: #ffffff;
+}
+
+.outter-container {
+	background-color: #788286;
+	margin-top: 2em;
+
+}
+
+.outter-container div h2 {
+	font-family: Roboto-Bold;
+	margin-left: 15px;
+}
+
+.table-container {
+	background-color: #ffffff;
+	margin-bottom: 2em;
+	padding: 0;
+}
+
+.table-center {
+	text-align: center;
+}

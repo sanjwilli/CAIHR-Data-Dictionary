@@ -1,0 +1,43 @@
+header {
+	height: 5em;
+	background-color: #008080/*#07425a*/;
+}
+
+/* ----- logo style ----- */
+
+header nav a img {
+	height: 5em;
+}
+
+/* ----- nav link style ----- */
+
+header nav ul {
+	list-style: none;
+	display: inline;
+}
+
+header nav ul li {
+	display: inline-block;
+}
+header nav ul li a {
+	display: inline-block;
+	margin-left: 20px;
+
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+
+	font-weight: 700;
+	font-size: 14px;
+	color: rgba(255,255,255,0.7);
+	text-transform: uppercase;
+}
+
+header nav ul li a:hover {
+	color: rgba(255,255,255, 1);
+	text-decoration: none;
+}
+
+header nav ul li a:visited {
+	text-decoration: none;
+}
