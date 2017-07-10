@@ -24,6 +24,10 @@
 body {
 	background-color: #e6eae3;
 }
+table {
+	width: 100%;
+}
+
 th {
 	padding: 5px;
 	width: 100px;
@@ -36,9 +40,35 @@ tr {
 	height: 5em;
 }
 
+td {
+	padding-left: 15px;
+}
+
 thead {
 	background-color: #2a2b2c;
 	color: #ffffff;
+}
+
+.container-fluid .heading, .container-fluid .back-btn {
+	display: inline-block;
+}
+
+.container-fluid .back-btn {
+	margin-bottom: 20px;
+}
+
+.container-fluid .back-btn a {
+	/*margin-right: 30px;*/
+	/*font-size: 2em;*/
+	color: rgba(255, 255, 255, 0.8);
+	background-color: #00a78e;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.container-fluid .back-btn a:hover {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 1);
 }
 
 .outter-container {

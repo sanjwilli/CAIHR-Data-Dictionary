@@ -1,15 +1,21 @@
 {% extends  'base.html' %}
 
 {% block main %}
-<div class="container outter-container">
+<div class="container-fluid outter-container">
 	<div>
-		<div>
+		{% if display == 2 %}
+			<div class="back-btn">
+				<a href="" id="goto_back">&#8249; Previous</a>
+			</div>
+		{% endif %}
+		<div class="heading">
 			<h2>Data Dictionary</h2>
 		</div>
 	</div>
 </div>
-<div class="container table-container">
+<div class="container-fluid table-container">
 	<div>
+		{% if display == 1 %}
 		<table>
 			<thead>
 				<tr>
@@ -19,7 +25,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
+				
+				{% for project in projects %}
+
+					<tr>
+						<td class="center"><a href="/{{project}}">{{ project }}</a></td>
+					</tr>
+
+				{% endfor %}
+				<!-- <tr>
 					<td class="table-center">Spanish</td>
 					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -33,10 +47,24 @@
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 					consequat.</td>
-					<td class="table-center">2007-2017</td>
+					<td class="table-center">2007-2017</td> -->
 				</tr>
 			</tbody>
 		</table>
+		{% elif display == 2 %}
+			<table>
+				<thead>
+					<tr>
+						<th>header</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		{% endif %}
 	</div>
 </div>
 
