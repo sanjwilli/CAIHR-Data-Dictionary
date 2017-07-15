@@ -19,6 +19,7 @@
 
 $(document).ready(function(){
     $("#goto_back").click(function(){
-        alert('ok previous was clicked')
+        
+        console.log("Worked")
     });
 });

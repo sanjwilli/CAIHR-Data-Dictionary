@@ -3,9 +3,13 @@
 {% block main %}
 <div class="container-fluid outter-container">
 	<div>
-		{% if display == 2 %}
+		{% if display == 2  %}
 			<div class="back-btn">
-				<a href="" id="goto_back">&#8249; Previous</a>
+				<a href="/">&#8249; Previous</a>
+			</div>
+		{% elif display != 1 and display != 2 %}
+			<div class="back-btn">
+				<a href="/{{previous}}">&#8249; Previous</a>
 			</div>
 		{% endif %}
 		<div class="heading">
@@ -52,18 +56,42 @@
 			</tbody>
 		</table>
 		{% elif display == 2 %}
+			<ul>
+				{% for project in projects %}
+
+					<li><a href="/{{ project }}">{{ project }}</a></li>
+
+				{% endfor %}
+			</ul>
+
+		{% elif display == 3 %}
 			<table>
 				<thead>
 					<tr>
-						<th>header</th>
+						<th>Variable Name</th>
+					</tr>
+					<tr>
+						<th>Variable Label</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>data</td>
-					</tr>
+					{% for data_name, data_label in data_name %}
+						<tr>
+							<td>data_name</td>
+						</tr>
+						<tr>
+							<td>data_label</td>
+						</tr>
+					{% endfor %}
 				</tbody>
 			</table>
+			<ul>
+				{% for project in projects %}
+
+					<li><a href="/{{ project }}/data">{{ project }}</a></li>
+
+				{% endfor %}
+			</ul>
 		{% endif %}
 	</div>
 </div>

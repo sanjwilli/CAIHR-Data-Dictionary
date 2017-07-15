@@ -66,7 +66,7 @@ thead {
 	cursor: pointer;
 }
 
-.container-fluid .back-btn a:hover {
+.container-fluid .back-btn form input[type='submit']:hover {
 	text-decoration: none;
 	color: rgba(255, 255, 255, 1);
 }
