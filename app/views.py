@@ -28,6 +28,9 @@ def home():
 	display = 1
 	return render_template('home.html', projects = projects, display = display)
 
+@app.route('/Data Dictionary')
+def data_dictionary():
+	return redirect(url_for('home'))
 @app.route('/<newdir>')
 def goto_dir(newdir):
 
@@ -41,9 +44,9 @@ def goto_dir(newdir):
 		else:
 			t_count-=1
 	if t_count == len(projects) and t_count != 0:
-		data_name, data_label = build_table(get_data_set_path(newdir))
+		data = build_table(get_data_set_path(newdir))
 		display = 3
-		return render_template('home.html', data_name = data_name, data_label = data_label, display = display, previous = previous)
+		return render_template('home.html', data = data, display = display, previous = previous)
 
 	display = 2
 	return render_template('home.html', projects = projects, display = display, previous = previous)
@@ -53,18 +56,6 @@ def display_data(newdir):
 	table  = build_table()
 	return render_template('home.html')
 
-
-# def goto_back():
-# 	global file_location
-# 	print('######### ' + file_location + ' #########')
-# 	rm_point = file_location.rfind('/')
-# 	print('######### ' + str(rm_point) + ' #########')
-# 	file_location = file_location[:rm_point]
-# 	new_rm_point = file_location.rfind('/')
-# 	new_path = file_location[new_rm_point+1:]
-# 	return redirect(url_for('goto_dir', newdir=new_path))
-# 	print('######### changed location : ' + file_location + ' #########')
-# 	print('#########  WENT BACK #########')
 
 # app.jinja_env.globals['goto_back'] = goto_back
 	
@@ -98,9 +89,16 @@ def get_previous(path):
 
 def get_data_set_path(path):
 	file = find_dir(path)
-	xfile = file + str(os.listdir(file))
-	print xfile
-	return xfile
+	xfile = os.listdir(file)
+	if len(xfile) > 1:
+		for x in xfile:
+			if x.startswith('.'):
+				num = xfile.index(x)
+				xfile.pop(num)
+				break
+	file = file + '/' + xfile[0]
+
+	return file
 
 def build_table(path):
 	print path
@@ -121,7 +119,8 @@ def build_table(path):
 		data_name.append(str(data_set.cell(row + 1, v_name_col).value))
 		data_label.append(str(data_set.cell(row + 1, v_label_col).value)) 
 
-	return data_name, data_label
+	data = zip(data_name, data_label)
+	return data
 
 
 
