@@ -31,6 +31,8 @@ def home():
 @app.route('/Data Dictionary')
 def data_dictionary():
 	return redirect(url_for('home'))
+
+
 @app.route('/<newdir>')
 def goto_dir(newdir):
 
@@ -53,8 +55,10 @@ def goto_dir(newdir):
 
 @app.route('/<newdir>/data')
 def display_data(newdir):
-	table  = build_table()
-	return render_template('home.html')
+	heading = get_data_set_heading()
+	table  = get_data_set(newdir)
+	display = 4
+	return render_template('home.html', table = table, display = display)
 
 
 # app.jinja_env.globals['goto_back'] = goto_back
@@ -102,15 +106,21 @@ def get_data_set_path(path):
 
 def build_table(path):
 	print path
+
+	global workbook
 	workbook = xlrd.open_workbook(path)
 
+	global data_set
 	data_set = workbook.sheet_by_name("Data Dictionary")
 
-	for col in range(data_set.ncols):
-		if str(data_set.cell(0,col).value) == 'Variable name':
-			v_name_col = (col)
-		if str(data_set.cell(0,col).value) == 'Variable label':
-			v_label_col = (col)
+	v_name_col = get_var_pos('Variable name')
+	v_label_col = get_var_pos('Variable label')
+
+	# for col in range(data_set.ncols):
+	# 	if str(data_set.cell(0,col).value) == 'Variable name':
+	# 		v_name_col = (col)
+	# 	if str(data_set.cell(0,col).value) == 'Variable label':
+	# 		v_label_col = (col)
 
 	data_name = []
 	data_label = []
@@ -122,7 +132,54 @@ def build_table(path):
 	data = zip(data_name, data_label)
 	return data
 
+def get_var_pos(var):
+	
+	global data_set
 
+	for col in range(data_set.ncols):
+		if str(data_set.cell(0, col).value) == var:
+			return col
+
+def get_data_set_pos(row, name):
+	
+	global data_set
+	for pos in range(data_set.nrows):
+		if str(data_set.cell(pos, row).value) == name:
+			return pos
+
+def get_data_set(var):
+
+	global data_set
+
+	v_name_col = get_var_pos('Variable name')
+	v_label_col = get_var_pos('Variable label')
+
+	pos = get_data_set_pos(v_name_col, var)
+
+	data = []
+
+	for row in range(data_set.ncols):
+		if row != v_name_col and row != v_label_col:
+			data.append(str(data_set.cell(pos, row).value))
+
+	print(str(data))
+
+	return data
+
+
+def get_data_set_heading():
+
+	v_name_col = get_var_pos('Variable name')
+	v_label_col = get_var_pos('Variable label')
+
+	global data_set
+
+	head = []
+	for row in range(data_set.ncols):
+		if row != v_name_col and row != v_label_col:
+			head.append(str(data_set.cell(0, row).value))
+	
+	return head
 
 if __name__ == '__main__':
 	app.run(debug=True, host="0.0.0.0", port="5000")

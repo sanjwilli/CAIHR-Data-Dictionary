@@ -37,21 +37,6 @@
 					</tr>
 
 				{% endfor %}
-				<!-- <tr>
-					<td class="table-center">Spanish</td>
-					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.</td>
-					<td class="table-center">2007-2017</td>
-				</tr>
-				<tr>
-					<td class="table-center">Kingston</td>
-					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.</td>
-					<td class="table-center">2007-2017</td> -->
 				</tr>
 			</tbody>
 		</table>
@@ -75,19 +60,27 @@
 				<tbody>
 					{% for data_name, data_label in data: %}
 						<tr>
-							<td>{{ data_name }}</td>
+							<td><a href="/{{ data_name }}/data">{{ data_name }}</a></td>
 							<td>{{ data_label }}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-			<ul>
+			<!-- <ul>
 				{% for project in projects %}
 
 					<li><a href="/{{ project }}/data">{{ project }}</a></li>
 
 				{% endfor %}
-			</ul>
+			</ul> -->
+		{% elif display == 4 %}
+			<div>
+				{% for data in table %}
+
+				<h4>{{ data }}</h4>
+
+				{% endfor %}
+			</div>
 		{% endif %}
 	</div>
 </div>
