@@ -20,24 +20,23 @@
 <div class="container-fluid table-container">
 	<div>
 		{% if display == 1 %}
-		<table>
-			<thead>
-				<tr>
-					<th>Project Name</th>
-					<th>Description</th>
-					<th>Range</th>
+		<table class="main-table">
+			<thead class="main-thead">
+				<tr class="main-tr">
+					<th class="main-th">Project Name</th>
+					<!-- <th class="main-th">Description</th>
+					<th class="main-th">Range</th> -->
 				</tr>
 			</thead>
 			<tbody>
 				
 				{% for project in projects %}
 
-					<tr>
-						<td class="center"><a href="/{{project}}">{{ project }}</a></td>
+					<tr class="main-tr">
+						<td class="center main-td"><a href="/{{project}}">{{ project }}</a></td>
 					</tr>
 
 				{% endfor %}
-				</tr>
 			</tbody>
 		</table>
 		{% elif display == 2 %}
@@ -50,7 +49,7 @@
 			</ul>
 
 		{% elif display == 3 %}
-			<table>
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Variable Name</th>
@@ -74,12 +73,35 @@
 				{% endfor %}
 			</ul> -->
 		{% elif display == 4 %}
-			<div>
-				{% for data in table %}
+			<div class="data-container">
+				<div class="fixer-container">
+					<div class="float-left head-pos">
+						<div>
+							<ul>
+								{% for head in heading %}
 
-				<h4>{{ data }}</h4>
+									<li>{{ head }}</li>
 
-				{% endfor %}
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<div class="float-left data-pos">
+						<div>
+							<ul>
+								{% for data in table %}
+
+									{% if data == '' %}
+										<li>N/A</li>
+									{% else %}
+										<li>{{ data }}</li>
+									{% endif %}
+
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		{% endif %}
 	</div>

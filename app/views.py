@@ -58,7 +58,7 @@ def display_data(newdir):
 	heading = get_data_set_heading()
 	table  = get_data_set(newdir)
 	display = 4
-	return render_template('home.html', table = table, display = display)
+	return render_template('home.html', table = table, heading = heading, display = display)
 
 
 # app.jinja_env.globals['goto_back'] = goto_back
@@ -179,6 +179,7 @@ def get_data_set_heading():
 		if row != v_name_col and row != v_label_col:
 			head.append(str(data_set.cell(0, row).value))
 	
+	print('######## ' + str(head) + '########' )
 	return head
 
 if __name__ == '__main__':

@@ -15,8 +15,10 @@
 			{% include 'header.html' %}
 		</header>
 		<main>
-			<div class="container-fluid"></div>
-			{% block main %} {% endblock %}
+			<div class="container-fluid">
+				{% block main %} {% endblock %}
+			</div>
+			
 		</main>
 		<footer>
 			{% include 'footer.html' %}
