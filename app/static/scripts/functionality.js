@@ -18,8 +18,33 @@
 // }, false);
 
 $(document).ready(function(){
-    $("#goto_back").click(function(){
-        
-        console.log("Worked")
+
+    // ===== Scroll to Top ==== 
+	$(window).scroll(function() {
+	    if ($(this).scrollTop() >= 500) {        // If page is scrolled more than 500px
+	        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+	    } else {
+	        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+	    }
+
+	    if ($(this).scrollTop() >= 500){
+	    	$('.goto-back').fadeIn(200);
+	    } else {
+	    	$('.goto-back').fadeOut(200);
+	    }
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+	    $('body,html').animate({
+	        scrollTop : 0                       // Scroll to top of body
+	    }, 500);
+	});
+
+	$(".goto-back").click(function(){
+        window.history.back();
     });
+
+    $("#goto-back").click(function(){
+        window.history.back();
+    });
+
 });

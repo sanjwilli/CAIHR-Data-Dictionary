@@ -1,11 +1,20 @@
 {% extends  'base.html' %}
 
 {% block main %}
-<div class="container-fluid outter-container">
+
+<a href="javascript:" class="goto-back"><i class="fa fa-arrow-left"></i></a>
+
+<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+
+<div class="outter-container">
 	<div>
 		{% if display == 2  %}
 			<div class="back-btn">
 				<a href="/">&#8249; Previous</a>
+			</div>
+		{% elif display == 4 %}
+			<div class="back-btn">
+				<a href="" id="goto-back">&#8249; Previous</a>
 			</div>
 		{% elif display != 1 and display != 2 %}
 			<div class="back-btn">
@@ -13,11 +22,11 @@
 			</div>
 		{% endif %}
 		<div class="heading">
-			<h2>Data Dictionary</h2>
+			<h2>CAIHR Data Dictionary</h2>
 		</div>
 	</div>
 </div>
-<div class="container-fluid table-container">
+<div class="table-container effect1">
 	<div>
 		{% if display == 1 %}
 		<table class="main-table">
@@ -43,14 +52,14 @@
 			<ul>
 				{% for project in projects %}
 
-					<li><a href="/{{ project }}">{{ project }}</a></li>
+					<li class="main-li"><a href="/{{ project }}">{{ project }}</a></li>
 
 				{% endfor %}
 			</ul>
 
 		{% elif display == 3 %}
 			<table class="table table-striped">
-				<thead>
+				<thead class="main-thead">
 					<tr>
 						<th>Variable Name</th>
 						<th>Variable Label</th>
@@ -65,42 +74,23 @@
 					{% endfor %}
 				</tbody>
 			</table>
-			<!-- <ul>
-				{% for project in projects %}
-
-					<li><a href="/{{ project }}/data">{{ project }}</a></li>
-
-				{% endfor %}
-			</ul> -->
 		{% elif display == 4 %}
 			<div class="data-container">
 				<div class="fixer-container">
-					<div class="float-left head-pos">
-						<div>
-							<ul>
-								{% for head in heading %}
-
-									<li>{{ head }}</li>
-
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
-					<div class="float-left data-pos">
-						<div>
-							<ul>
-								{% for data in table %}
-
+					<table>
+						<tbody>
+							{% for head,data in results %}
+								<tr>
+									<td class="meta-data-td td-head">{{ head }}</td>
 									{% if data == '' %}
-										<li>N/A</li>
+										<td class="meta-data-td td-data">N/A</td>
 									{% else %}
-										<li>{{ data }}</li>
+										<td class="meta-data-td td-data">{{ data }}</td>
 									{% endif %}
-
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		{% endif %}
