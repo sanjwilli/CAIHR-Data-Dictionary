@@ -33,6 +33,8 @@ Flask
 ```
 ## Installations
 
+The Installations are not necessary but are worth mentioning all needed to run this applicaion is down below.
+
 ### Python 2.7
 
 ```
